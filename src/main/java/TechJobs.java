@@ -63,9 +63,22 @@ public class TechJobs {
 
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
+                } else if (searchField.equals("position type")) {
+//                    System.out.println("position type Working!");
+                    printJobs(JobData.findByValue(searchTerm));
+                } else if (searchField.equals("location")) {
+//                    System.out.println("location Working!");
+                    printJobs(JobData.findByValue(searchTerm));
+                } else if (searchField.equals("employer")) {
+//                    System.out.println("employer Working!");
+                    printJobs(JobData.findByValue(searchTerm));
+                } else if (searchField.equals("core competency")) {
+//                    System.out.println("core competency Working!");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
+
             }
         }
     }

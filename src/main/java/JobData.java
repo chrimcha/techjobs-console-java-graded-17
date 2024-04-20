@@ -72,9 +72,17 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            String lowerCAValue = aValue.toLowerCase();
+            String lowerCUserValue = value.toLowerCase();
+
+            if (lowerCAValue.contains(lowerCUserValue)) {
                 jobs.add(row);
             }
+        }
+
+        //prints 'No Result' if value is not found
+        if (jobs.isEmpty()) {
+            System.out.print("No Results");
         }
 
         return jobs;
@@ -96,15 +104,12 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobsList = new ArrayList<>();
 
         for (HashMap<String, String> job : allJobs) {
-//                String aValue = job.get("position type").replaceAll("[^a-zA-Z]", "").toLowerCase();
-//                String bValue = job.get("employer").replaceAll("[^a-zA-Z]", "").toLowerCase();
-//
-//                String aJob = String.valueOf(job).replaceAll("[^a-zA-Z]", "").toLowerCase();
-
-//            String stuff = job.values().toString();
 
             for (String a : job.values()) {
-                if (a.contains(value)){
+                String lowerCJob = a.toLowerCase();
+                String lowerCValue = value.toLowerCase();
+
+                if (lowerCJob.contains(lowerCValue)){
                     if (!jobsList.contains(job)) {
                         jobsList.add(job);
                     }

@@ -63,14 +63,6 @@ public class TechJobs {
 
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
-                } else if (searchField.equals("position type")) {
-                    printJobs(JobData.findByValue(searchTerm));
-                } else if (searchField.equals("location")) {
-                    printJobs(JobData.findByValue(searchTerm));
-                } else if (searchField.equals("employer")) {
-                    printJobs(JobData.findByValue(searchTerm));
-                } else if (searchField.equals("core competency")) {
-                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -128,19 +120,26 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        //could use Map instead to make code DRY
         for (HashMap<String, String> job : someJobs) {
-            for (int i = 0; i < someJobs.size(); i++) {
-                System.out.println(
-                        "\n"
-                        + "*****\n"
-                        + "position type: " + job.get("position type") + "\n"
-                        + "name: " + job.get("name") + "\n"
-                        + "employer: " + job.get("employer") + "\n"
-                        + "location: " + job.get("location") + "\n"
-                        + "core competency: " + job.get("core competency") + "\n"
-                        + "*****"
-                );
+            System.out.println("\n*****");
+            for (Map.Entry<String, String> info : job.entrySet()) {
+
+                System.out.println(info.getKey() + ": " + info.getValue());
             }
+            System.out.println("*****");
+
+                //or could use this
+//                System.out.println(
+//                        "\n"
+//                        + "*****\n"
+//                        + "position type: " + job.get("position type") + "\n"
+//                        + "name: " + job.get("name") + "\n"
+//                        + "employer: " + job.get("employer") + "\n"
+//                        + "location: " + job.get("location") + "\n"
+//                        + "core competency: " + job.get("core competency") + "\n"
+//                        + "*****"
+//                );
         }
     }
 }

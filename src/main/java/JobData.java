@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -94,17 +91,28 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
+        // TODO - implement this method (if position type and employer are the same then job is the same? or if all filed values are the same then job is the same)
+
         ArrayList<HashMap<String, String>> jobsList = new ArrayList<>();
 
-        if (jobsList.isEmpty()) {
-            for (HashMap<String, String> job : allJobs) {
-                if (job.containsValue(value)) {
-                    jobsList.add(job);
+        for (HashMap<String, String> job : allJobs) {
+//                String aValue = job.get("position type").replaceAll("[^a-zA-Z]", "").toLowerCase();
+//                String bValue = job.get("employer").replaceAll("[^a-zA-Z]", "").toLowerCase();
+//
+//                String aJob = String.valueOf(job).replaceAll("[^a-zA-Z]", "").toLowerCase();
+
+//            String stuff = job.values().toString();
+
+            for (String a : job.values()) {
+                if (a.contains(value)){
+                    if (!jobsList.contains(job)) {
+                        jobsList.add(job);
+                    }
                 }
             }
         }
 
+        //prints 'No Result' if value is not found
         if (jobsList.isEmpty()) {
             System.out.print("No Results");
         }
@@ -152,5 +160,6 @@ public class JobData {
             e.printStackTrace();
         }
     }
+
 
 }
